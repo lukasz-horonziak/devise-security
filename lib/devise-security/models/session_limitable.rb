@@ -12,6 +12,8 @@ module Devise
     module SessionLimitable
       extend ActiveSupport::Concern
 
+      attr_accessor :skip_session_limitable
+
       # Update the unique_session_id on the model.  This will be checked in
       # the Warden after_set_user hook in {file:devise-security/hooks/session_limitable}
       # @param unique_session_id [String]
@@ -24,6 +26,9 @@ module Devise
         end
       end
 
+      def skip_session_limitable
+        @skip_session_limitable || false
+      end
     end
   end
 end
